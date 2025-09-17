@@ -99,13 +99,9 @@ takmičenja
 """
 
 def stud_winner(studs):
-
-  best_math_stud = max(studs, key=lambda x: x["math"])
-  best_programming_stud = max(studs, key=lambda x: x["programming"])
-  print(best_math_stud)
-  print(best_programming_stud)
-
-
+  # find the best of programming and math, but if they are equal, then return the second arg - x["programming"]
+  winner = max(studs, key=lambda x: (x["programming"] + x["math"], x["programming"]))
+  return winner
 
 students = [
   {"full_name":"Eris Sutkovic", "math":37, "programming": 47},
