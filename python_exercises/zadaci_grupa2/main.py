@@ -90,6 +90,7 @@ res = can_do_noise()
 print(res)
 '''
 
+
 """
 7. Takmičari su radili testove iz matematike i programiranja. Za svaki predmet dobili su
 određeni broj poena (cio broj od 0 do 50). Takmičari se rangiraju po ukupnom broju
@@ -97,7 +98,7 @@ poena iz oba predmeta. Ako dva takmičara imaju isti broj poena, pobjednik je on
 ima više poena iz programiranja. Potrebno je napisati program koji određuje pobjednika
 takmičenja
 """
-
+''' 
 def stud_winner(studs):
   # find the best of programming and math, but if they are equal, then return the second arg - x["programming"]
   winner = max(studs, key=lambda x: (x["programming"] + x["math"], x["programming"]))
@@ -110,6 +111,6 @@ students = [
   {"full_name":"Derryl Smith", "math":12, "programming": 23},
   {"full_name":"Rob Kedrick", "math":47, "programming": 48},
 ]
-
 stud_winner(students)
+'''
 
