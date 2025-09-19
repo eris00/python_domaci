@@ -1,5 +1,4 @@
 
-
 # 5
 
 datas = [{"naziv":"Español para principiantes", "br_pozitivni":1000,"br_negativni":10},
@@ -145,7 +144,7 @@ def main_program():
   lib.add_book(Book("Book2", "Autor2", 2021, 2))
   lib.add_book(Book("Book3", "Author3", 2015, 1))
 
-  irrelevant = None
+  recent_added_books = []
 
   while True:
     menu()
@@ -224,3 +223,98 @@ def main_program():
 if __name__ == "__main__":
     main_program()
 
+
+# 12
+class Company:
+  def __init__(self, name, area, balance, max_num_of_employees):
+    self.__name = name
+    self.__area = area
+    self.__employees = []
+    self.__balance = balance
+    self.__max_num_of_employees = max_num_of_employees
+
+  def get_name(self):
+    return self.__name
+
+  def set_name(self, value):
+    self.__name = value
+
+  def get_area(self):
+    return self.__area
+
+  def set_area(self, value):
+    self.__area = value
+
+  def get_balance(self):
+    return self.__balance
+
+  def set_balance(self, value):
+    if value < 0:
+        return
+    self.__balance = value
+
+  def get_max_num_of_employees(self):
+    return self.__max_num_of_employees
+
+  def set_max_num_of_employees(self, value):
+    if value < 0:
+      return
+    self.__max_num_of_employees = value
+
+  def add_employee(self, employee):
+    new_employee = True
+    if len(self.__employees) < self.__max_num_of_employees:
+      self.__employees.append(employee)
+      return True
+    return False
+
+  def remove_employee(self, employee_name, employee_surname):
+    i = 0
+    while i < len(self.__employees):
+      emp = self.__employees[i]
+      if emp.get("name") == employee_name and emp.get("surname") == employee_surname:
+        del self.__employees[i]
+        return True
+      i += 1
+    return False
+
+  def __str__(self):
+    return f'"name": "{self.__name}", "area": "{self.__area}", "balance": "{self.__balance}"'
+
+  def can_pay_employees(self):
+    total = 0.0
+    for emp in self.__employees:
+      s = emp.get("salary", 0)
+      total = total + s
+    return self.__balance > total
+
+  def __gt__(self, other):
+    return len(self.__employees) >= len(other.__employees) 
+
+
+c1 = Company("TechNova", "Software", 12000.0, 4)
+c2 = Company("DataForge", "Analytics", 8000.0, 3)
+
+print(str(c1))
+print(str(c2))
+
+c1.add_employee({"name": "John", "surname": "Doe", "salary": 3000})
+c1.add_employee({"name": "Ana", "surname": "Ilic", "salary": 2800})
+c1.add_employee({"name": "Mira", "surname": "Kovac", "salary": 2500})
+
+c2.add_employee({"name": "Luka", "surname": "Peric", "salary": 4000})
+c2.add_employee({"name": "Sara", "surname": "Nikic", "salary": 3500})
+
+print(c1.can_pay_employees())
+print(c2.can_pay_employees())
+
+print(c1 > c2)
+
+c1.remove_employee("Ana", "Ilic")
+print(c1.can_pay_employees())
+print(c1 > c2)
+
+c1.set_balance(8300.0)
+print(c1.get_balance())
+c1.set_max_num_of_employees(5)
+print(c1.get_max_num_of_employees())

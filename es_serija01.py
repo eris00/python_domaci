@@ -29,17 +29,6 @@ is_part_of(5, 0)
 is_part_of(3, 3) 
 is_part_of(4, 0)
 
-
-# 96
-
-"""
-
-def break_str (str, num):
-  res = []
-  for i in range(0, len(str), num):
-    substr = str[i+n]
-"""
-
 # 39
 
 def is_narcissistic(num):
@@ -54,3 +43,24 @@ def is_narcissistic(num):
 print(is_narcissistic(153))
 print(is_narcissistic(9474))
 print(is_narcissistic(123))
+
+# 96
+def split_string(text, number):
+    result = []
+    i = 0 
+    while i < len(text):
+        chunk = text[i:i + number]
+
+        if len(chunk) < number:
+            missing = number - len(chunk)
+            chunk = chunk + ("*" * missing)
+
+        result.append(chunk)
+        i += number
+
+    return result
+
+
+print(split_string("danas polazemo test", 5))
+print(split_string("kurs web program.", 6))
+print(split_string("da", 7))     
