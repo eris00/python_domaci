@@ -4,7 +4,7 @@ File: Domaci zadatak 4
 
 from functools import reduce
 from datetime import datetime
-
+import time
 
 # 2
 def higher_than_85(names_list, grades_list, limit=8.5):
@@ -414,3 +414,38 @@ def main():
 
 if __name__ == "__main__":
 	main()
+	
+
+print("____  ____  ____  ____  ____  ____  ____")
+
+# 17 
+
+def measure_time(func):
+  def wrapper(*args, **kwargs):
+    start_time = time.time()
+    result = func(*args, **kwargs)
+    end_time = time.time()
+    duration = end_time - start_time
+    print("Function: " + func.__name__ + " took " + duration + " seconds")
+    return result
+  return wrapper
+
+@measure_time
+def slow_function():
+  total = 0
+  for i in range(10**6):
+    total += i
+  return total
+
+@measure_time
+def wait_function(seconds):
+  time.sleep(seconds)
+  return "done"
+
+@measure_time
+def sum_numbers(n):
+  return sum(range(n))
+
+print(slow_function())
+print(wait_function(2))
+print(sum_numbers(1000000))
